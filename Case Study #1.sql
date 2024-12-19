@@ -136,9 +136,4 @@ GROUP BY
 	s.customer_id
 ORDER BY
 	s.customer_id;
-	
 
-
-
-
-	
