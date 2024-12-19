@@ -137,8 +137,3 @@ GROUP BY
 ORDER BY
 	s.customer_id;
 	
-
-
-
-
-	
