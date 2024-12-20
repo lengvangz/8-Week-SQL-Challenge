@@ -7,11 +7,14 @@
 SELECT 
 	s.customer_id,
 	SUM(m.price) AS total_amount_spent
-FROM sales s
+FROM 
+	sales s
 INNER JOIN menu m
 	ON s.product_id = m.product_id
-GROUP BY s.customer_id
-ORDER BY s.customer_id;
+GROUP BY 
+	s.customer_id
+ORDER BY 
+	s.customer_id;
 
 -- 2. How many days has each customer visited the restaurant?
 
@@ -42,14 +45,15 @@ ORDER BY
 
 SELECT 
 	m.product_name,
-	count(s.product_id) as num_purchased
-FROM menu m 
+	COUNT(s.product_id) AS num_purchased
+FROM 
+	menu m 
 INNER JOIN sales s 
 	ON m.product_id = s.product_id
 GROUP BY 
 	m.product_name
 ORDER BY 
-	num_purchased desc
+	num_purchased DESC
 LIMIT 1;
 
 -- 5. Which item was the most popular for each customer?
@@ -57,7 +61,7 @@ LIMIT 1;
 SELECT
 	s.customer_id,
 	m.product_name,
-	COUNT(s.product_id) as num_purchase
+	COUNT(s.product_id) AS num_purchase
 FROM 
 	sales s
 INNER JOIN menu m
@@ -65,7 +69,7 @@ INNER JOIN menu m
 GROUP BY
 	s.customer_id, m.product_name
 ORDER BY
-	s.customer_id asc, num_purchase desc;
+	s.customer_id ASC, num_purchase DESC;
 
 -- 6. Which item was purchased first by the customer after they became a member?
 
@@ -125,9 +129,9 @@ ORDER BY
 SELECT
 	s.customer_id,
 	SUM(CASE
-			WHEN m.product_name = 'sushi' THEN price*20
-			ELSE mprice*10
-		END) AS total_points
+		WHEN m.product_name = 'sushi' THEN price*20
+		ELSE mprice*10
+	END) AS total_points
 FROM 
 	sales s
 INNER JOIN menu m
