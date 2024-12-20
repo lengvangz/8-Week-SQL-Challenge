@@ -26,4 +26,30 @@ Danny wants to analyze the data to answer some key questions about his customers
 
 ## Action 
 
-[Solution](https://github.com/lengvangz/8-Week-SQL-Challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Case%20Study%20%231.sql)
+[Sourcecode](https://github.com/lengvangz/8-Week-SQL-Challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Case%20Study%20%231.sql)
+
+**1. What is the total amount each customer spent at the restaurant?**
+
+````sql
+SELECT 
+	s.customer_id,
+	SUM(m.price) AS total_amount_spent
+FROM 
+	sales s
+INNER JOIN menu m
+	ON s.product_id = m.product_id
+GROUP BY 
+	s.customer_id
+ORDER BY 
+	s.customer_id;
+````
+
+#### Answer:
+| customer_id | total_sales |
+| ----------- | ----------- |
+| A           | 76          |
+| B           | 74          |
+| C           | 36          |
+
+
+
