@@ -31,8 +31,32 @@ Danny created an entity-relationship diagram of his database design but requires
 #### 🪛 Table: customer_orders
 
 On the `customer_orders` table below, there are:
-- In the `exclusions` column, there are empty spaces and null values.
-- In the `extras` column, there are empty spaces and null values.
+- Blank spaces, null values, and 'null' values (as a string) in the `exclusions` column.
+- Blank spaces, null values, and 'null' values (as a string) in the `extras` column.
 
 <img width="1063" alt="image" src="https://github.com/lengvangz/images/blob/main/customer_orders%20table.png">
+
+Steps taken to clean table:
+- Create a temporary table and be the copy of the original table.
+- Change the null values and 'null' values into blank spaces.
+
+````sql
+DROP TABLE IF EXISTS customer_orders_temp;
+
+CREATE TEMP TABLE customer_orders_temp AS
+SELECT
+  order_id,
+  customer_id,
+	pizza_id,
+	CASE
+		WHEN exclusions IS NULL OR exclusions LIKE 'null'  THEN ' '
+		ELSE exclusions
+	END as exclusions, 
+	CASE
+		WHEN extras IS NULL OR extras LIKE 'null' THEN ' '
+		ELSE extras
+	END as extras,
+	order_time
+FROM pizza_runner.customer_orders;
+````
 
