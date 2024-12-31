@@ -60,3 +60,8 @@ SELECT
 FROM pizza_runner.customer_orders;
 ````
 
+Result:
+- all null values and 'null' values in both columns are now blank spaces
+
+<img width="1063" alt="image" src="https://github.com/lengvangz/images/blob/main/customer_orders_temp%20table.png">
+
