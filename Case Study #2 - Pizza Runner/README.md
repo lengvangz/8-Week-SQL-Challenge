@@ -27,3 +27,5 @@ Danny created an entity-relationship diagram of his database design but requires
 ## 🏃 Actions
 
 ### Data Cleaning & Transformation
+
+#### 🪛 Table: customer_orders
