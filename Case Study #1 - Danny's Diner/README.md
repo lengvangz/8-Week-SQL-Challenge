@@ -26,7 +26,7 @@ Danny wants to analyze the data to answer some key questions about his customers
 
 ## Action 
 
-[Sourcecode](https://github.com/lengvangz/8-Week-SQL-Challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Case%20Study%20%231.sql)
+[Source Code](https://github.com/lengvangz/8-Week-SQL-Challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Case%20Study%20%231.sql)
 
 **1. What is the total amount each customer spent at the restaurant?**
 
