@@ -29,3 +29,8 @@ Danny created an entity-relationship diagram of his database design but requires
 ### Data Cleaning & Transformation
 
 #### 🪛 Table: customer_orders
+
+On the `customer_orders` table below, there are:
+- In the `exclusions` column, there are empty spaces and null values.
+- In the `extras` column, there are empty spaces and null values.
+
