@@ -34,3 +34,5 @@ On the `customer_orders` table below, there are:
 - In the `exclusions` column, there are empty spaces and null values.
 - In the `extras` column, there are empty spaces and null values.
 
+<img width="1063" alt="image" src="https://github.com/lengvangz/images/blob/main/customer_orders%20table.png">
+
