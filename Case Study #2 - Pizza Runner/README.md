@@ -65,3 +65,58 @@ Result:
 
 <img width="1063" alt="image" src="https://github.com/lengvangz/images/blob/main/customer_orders_temp%20table.png">
 
+#### 🪛 Table: runner_orders
+
+On the `customer_orders` table below, there are:
+- Blank spaces, null values, and 'null' values (as a string) in the `exclusions` column.
+- Blank spaces, null values, and 'null' values (as a string) in the `extras` column.
+
+<img width="1037" alt="image" src="https://github.com/lengvangz/images/blob/main/runner_order%20table.png">
+
+Steps taken to clean table:
+- Create a temporary table and be the copy of the original table.
+- Replaced all 'null' values (as a string) into null values.
+- Removed 'km', 'mins', 'minute', and 'minutes' from `distance` and `duration`
+- Replaced null values and 'null' values into blank spaces in the `cancellation` column.
+- Altered data types in certain columns.
+
+````sql
+DROP TABLE IF EXISTS runner_orders_temp;
+CREATE TEMP TABLE runner_orders_temp AS
+SELECT
+	order_id,
+	runner_id,
+	CASE
+		WHEN pickup_time LIKE 'null' THEN NULL
+		ELSE pickup_time
+	END AS pickup_time,
+	CASE 
+		WHEN distance LIKE 'null' THEN NULL
+		WHEN distance LIKE '%km' THEN TRIM('km' FROM distance)
+		ELSE distance
+	END as distance,
+	CASE 
+		WHEN duration LIKE 'null' THEN NULL
+		WHEN duration LIKE '%mins' THEN TRIM('mins' FROM duration)
+		WHEN duration LIKE '%minute' THEN TRIM('minute' FROM duration)
+		WHEN duration LIKE '%minutes' THEN TRIM('minutes' FROM duration)
+		ELSE duration
+	END as duration,
+	CASE
+		WHEN cancellation IS NULL OR cancellation LIKE 'null' THEN ' '
+		ELSE cancellation
+	END as cancellation 
+FROM pizza_runner.runner_orders;
+
+ALTER TABLE runner_orders_temp 
+ALTER COLUMN pickup_time TYPE timestamp USING pickup_time::timestamp without time zone,
+ALTER COLUMN distance TYPE numeric USING distance::numeric,
+ALTER COLUMN duration TYPE integer USING duration::integer;
+````
+
+Result of the `runner_order_temp` table:
+
+<img widt= "915" alt="image" src="https://github.com/lengvangz/images/blob/main/runner_order_temp%20table.png">
+
+
+  
