@@ -6,11 +6,12 @@
 - [Situation](#Situation)
 - [Task](#Task)
 - [Actions](#Actions)
-  - [Data Cleaning and Transformation](#-data-cleaning--transformation)
-  - [1) Pizza Metrics](#a-pizza-metrics)
-  - [2) Runner and Customer Experience](#b-runner-and-customer-experience)
-  - [3) Ingredient Optimisation](#c-ingredient-optimisation)
-  - [4) Pricing and Ratings](#d-pricing-and-ratings)
+  - [Data Cleaning and Transformation](#Data-cleaning--transformation)
+  - [Answers](#Answers)
+  	- [A) Pizza Metrics](#A-pizza-metrics)
+  	- [B) Runner and Customer Experience](#B-runner-and-customer-experience)
+  	- [C) Ingredient Optimisation](#B-ingredient-optimisation)
+  	- [D) Pricing and Ratings](#D-pricing-and-ratings)
 
 ## ‼️ Situation
 Danny was sold on the idea of "80s Retro Styling and Pizza Is The Future!" and wanted to Uberize it as well.  Combining these two concepts, Pizza Runner was launched. 
@@ -120,7 +121,9 @@ Result of the `runner_order_temp` table:
 
 ***
 
-### 1) Pizza Metrics
+## Answers
+
+### A) Pizza Metrics
 
 #### 1. How many pizzas were ordered?
 
