@@ -118,6 +118,8 @@ Result of the `runner_order_temp` table:
 
 <img widt= "915" alt="image" src="https://github.com/lengvangz/images/blob/main/runner_order_temp%20table.png">
 
+***
+
 ### 1) Pizza Metrics
 
 #### 1. How many pizzas were ordered?
@@ -138,5 +140,21 @@ FROM
 
 ***
   
-**2. How many unique customer orders were made?
+#### 2. How many unique customer orders were made?
+
+````sql
+SELECT
+	COUNT(DISTINCT order_id) AS unique_order
+FROM 
+	customer_orders;
+````
+
+#### Answer:
+|   | unique_order |
+| - | --------- |
+| 1 | 10        |
+
+- 14 pizzas were ordered.
+
+***
 
