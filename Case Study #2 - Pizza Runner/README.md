@@ -10,7 +10,7 @@
   - [Answers](#Answers)
   	- [A) Pizza Metrics](#A-pizza-metrics)
   	- [B) Runner and Customer Experience](#B-runner-and-customer-experience)
-  	- [C) Ingredient Optimisation](#B-Ingredient-Optimisation)
+  	- [C) Ingredient Optimisation](#C-Ingredient-Optimisation)
   	- [D) Pricing and Ratings](#D-pricing-and-ratings)
 
 ## Situation
