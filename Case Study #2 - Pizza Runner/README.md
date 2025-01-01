@@ -38,8 +38,8 @@ On the `customer_orders` table below, there are:
 <img width="1063" alt="image" src="https://github.com/lengvangz/images/blob/main/customer_orders%20table.png">
 
 Steps taken to clean table:
-- Create a temporary table and be the copy of the original table.
-- Change the null values and 'null' values into blank spaces.
+- Created a temporary table and be the copy of the original table.
+- Changed the null values and 'null' values into blank spaces.
 
 ````sql
 DROP TABLE IF EXISTS customer_orders_temp;
@@ -75,7 +75,7 @@ On the `customer_orders` table below, there are:
 <img width="1037" alt="image" src="https://github.com/lengvangz/images/blob/main/runner_order%20table.png">
 
 Steps taken to clean `runner_order` table:
-- Create a temporary table and be the copy of the original table.
+- Created a temporary table and be the copy of the original table.
 - Replaced all 'null' values (as a string) into null values.
 - Removed 'km', 'mins', 'minute', and 'minutes' from `distance` and `duration`.
 - Replaced null values and 'null' values into blank spaces in the `cancellation` column.
@@ -410,3 +410,112 @@ GROUP BY
 - Thursday had 3 orders of pizzas.
 - Friday had 1 order of pizzas.
 - Saturday had 5 orders of pizzas.
+
+***
+
+### A) Runner and Customer Experience
+
+#### 1. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 2. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 3. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 4. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 5. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 6. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 7. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
