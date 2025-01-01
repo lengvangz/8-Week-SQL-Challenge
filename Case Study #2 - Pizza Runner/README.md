@@ -364,36 +364,46 @@ ORDER BY
 	order_hour;
 ````
 #### Answer:
-|  | custom | regular |
-| - | --------- | --------- |
-| 101 | 0        | 2 |
-| 102 | 0        | 3 |
-| 103 | 3        | 0 |
-| 104 | 2        | 1 |
-| 105 | 1        | 0 |
+| order_hour | num_pizzas |
+| --------- | --------- |
+| 11        | 1 |
+| 13        | 3 |
+| 18        | 3 |
+| 19        | 1 |
+| 21        | 3 |
+| 23        | 3 |
 
 
-- 1 pizzas was delivered that had both exclusions and extras
+- on the 11th hour, 1 pizza was ordered.
+- on the 13rd hour, 3 pizzas was ordered.
+- on the 18th hour, 3 pizzas was ordered.
+- on the 19th hour, 1 pizzas was ordered.
+- on the 21st hour, 3 pizzas was ordered.
+- on the 23rd hour, 3 pizzas was ordered.
 
 ***
 
-#### 10. What was the total volume of pizzas ordered for each hour of the day?
+#### 10. What was the volume of orders for each day of the week?
 
 ````sql
 SELECT
-	EXTRACT(HOUR FROM order_time) AS order_hour, 
-	COUNT(*) AS num_pizzas
+	TO_CHAR(order_time, 'day') AS day_of_week,
+	COUNT(pizza_id) AS num_pizza
 FROM 
-	customer_orders
+	customer_orders_temp
 GROUP BY 
-	order_hour
-ORDER BY 
-	order_hour;
+	day_of_week;
 ````
 #### Answer:
-|  | both_exclusions_and_extras |
+| day_of_week | both_exclusions_and_extras |
 | - | --------- |
-| 1 | 1        | 
+| wednesday | 5        |
+| thursday | 3        | 
+| friday | 1        | 
+| saturday | 5        | 
 
 
-- 1 pizzas was delivered that had both exclusions and extras
+- Wednesday had 5 orders of pizzas.
+- Thursday had 3 orders of pizzas.
+- Friday had 1 order of pizzas.
+- Saturday had 5 orders of pizzas.
