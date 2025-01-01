@@ -7,10 +7,10 @@
 - [Task](#Task)
 - [Actions](#Actions)
   - [Data Cleaning and Transformation](#-data-cleaning--transformation)
-  - [A. Pizza Metrics](#a-pizza-metrics)
-  - [B. Runner and Customer Experience](#b-runner-and-customer-experience)
-  - [C. Ingredient Optimisation](#c-ingredient-optimisation)
-  - [D. Pricing and Ratings](#d-pricing-and-ratings)
+  - [1) Pizza Metrics](#a-pizza-metrics)
+  - [2) Runner and Customer Experience](#b-runner-and-customer-experience)
+  - [3) Ingredient Optimisation](#c-ingredient-optimisation)
+  - [4) Pricing and Ratings](#d-pricing-and-ratings)
 
 ## ‼️ Situation
 Danny was sold on the idea of "80s Retro Styling and Pizza Is The Future!" and wanted to Uberize it as well.  Combining these two concepts, Pizza Runner was launched. 
@@ -73,7 +73,7 @@ On the `customer_orders` table below, there are:
 
 <img width="1037" alt="image" src="https://github.com/lengvangz/images/blob/main/runner_order%20table.png">
 
-Steps taken to clean table:
+Steps taken to clean `runner_order` table:
 - Create a temporary table and be the copy of the original table.
 - Replaced all 'null' values (as a string) into null values.
 - Removed 'km', 'mins', 'minute', and 'minutes' from `distance` and `duration`
@@ -118,5 +118,23 @@ Result of the `runner_order_temp` table:
 
 <img widt= "915" alt="image" src="https://github.com/lengvangz/images/blob/main/runner_order_temp%20table.png">
 
+### 1) Pizza Metrics
 
+#### 1. How many pizzas were ordered?
+
+````sql
+SELECT 
+	COUNT(order_id) AS num_pizza_ordered
+FROM 
+	customer_orders;
+````
+
+#### Answer:
+|  | num_pizza |
+|  | --------- |
+|  | 14        |
+
+- 14 pizzas were ordered.
+
+***
   
