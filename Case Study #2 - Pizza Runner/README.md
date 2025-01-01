@@ -130,8 +130,8 @@ FROM
 ````
 
 #### Answer:
-| . | num_pizza |
-| _ | --------- |
+|   | num_pizza |
+| - | --------- |
 | 1 | 14        |
 
 | customer_id | total_sales |
