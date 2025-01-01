@@ -278,7 +278,7 @@ LIMIT 1;
 | - | --------- |
 | 4 | 3        |
 
-- The maximum number of pizzas delievered in a single order was 3
+- The maximum number of pizzas delievered in a single order was 3.
 
 ***
 
@@ -316,11 +316,11 @@ ORDER BY
 | 104 | 2        | 1 |
 | 105 | 1        | 0 |
 
-- customer 101 had 0 custom order and 2 regular order
-- customer 102 had 0 custom order and 3 regular order
-- customer 103 had 3 custom order and 0 regular order
-- customer 104 had 2 custom order and 1 regular order
-- customer 105 had 1 custom order and 0 regular order
+- customer 101 had 0 custom order and 2 regular order.
+- customer 102 had 0 custom order and 3 regular order.
+- customer 103 had 3 custom order and 0 regular order.
+- customer 104 had 2 custom order and 1 regular order.
+- customer 105 had 1 custom order and 0 regular order.
 
 ***
 
@@ -346,7 +346,7 @@ WHERE
  | 1        | 
 
 
-- 1 pizzas was delivered that had both exclusions and extras
+- 1 pizzas was delivered that had both exclusions and extras.
 
 ***
 
