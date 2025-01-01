@@ -413,7 +413,7 @@ GROUP BY
 
 ***
 
-### A) Runner and Customer Experience
+### B) Runner and Customer Experience
 
 #### 1. question
 
@@ -506,6 +506,190 @@ GROUP BY
 ***
 
 #### 7. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+### C) Ingredient Optimisation
+
+#### 1. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 2. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 3. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 4. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 5. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 6. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+### D) Pricing and Ratings
+
+#### 1. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 2. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 3. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 4. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 5. question
+
+````sql
+--Code
+````
+
+#### Answer:
+| name |
+| --------- |
+| data        |
+
+- answer.
+
+***
+
+#### 6. question
 
 ````sql
 --Code
