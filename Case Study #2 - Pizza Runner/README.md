@@ -134,13 +134,9 @@ FROM
 | - | --------- |
 | 1 | 14        |
 
-| customer_id | total_sales |
-| ----------- | ----------- |
-| A           | 76          |
-| B           | 74          |
-| C           | 36          |
-
 - 14 pizzas were ordered.
 
 ***
   
+**2. How many unique customer orders were made?
+
