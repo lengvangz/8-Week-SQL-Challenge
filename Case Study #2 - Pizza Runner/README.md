@@ -13,7 +13,7 @@
   	- [C) Ingredient Optimisation](#B-ingredient-optimisation)
   	- [D) Pricing and Ratings](#D-pricing-and-ratings)
 
-‼️ ## Situation
+## Situation ‼️
 Danny was sold on the idea of "80s Retro Styling and Pizza Is The Future!" and wanted to Uberize it as well.  Combining these two concepts, Pizza Runner was launched. 
 
 Danny started recruiting "runners" to deliver pizza from Pizza Runner HQ and also maxed out his credit card to pay freelancers to develop a mobile app to accept orders.
