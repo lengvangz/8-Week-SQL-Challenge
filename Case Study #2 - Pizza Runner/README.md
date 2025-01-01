@@ -49,11 +49,11 @@ SELECT
   customer_id,
 	pizza_id,
 	CASE
-		WHEN exclusions IS NULL OR exclusions LIKE 'null'  THEN ' '
+		WHEN exclusions IS NULL OR exclusions LIKE 'null'  THEN ''
 		ELSE exclusions
 	END as exclusions, 
 	CASE
-		WHEN extras IS NULL OR extras LIKE 'null' THEN ' '
+		WHEN extras IS NULL OR extras LIKE 'null' THEN ''
 		ELSE extras
 	END as extras,
 	order_time
@@ -103,7 +103,7 @@ SELECT
 		ELSE duration
 	END as duration,
 	CASE
-		WHEN cancellation IS NULL OR cancellation LIKE 'null' THEN ' '
+		WHEN cancellation IS NULL OR cancellation LIKE 'null' THEN ''
 		ELSE cancellation
 	END as cancellation 
 FROM pizza_runner.runner_orders;
@@ -132,9 +132,9 @@ FROM
 ````
 
 #### Answer:
-|   | num_pizza |
-| - | --------- |
-| 1 | 14        |
+| num_pizza |
+| --------- |
+| 14        |
 
 - 14 pizzas were ordered.
 
@@ -146,15 +146,254 @@ FROM
 SELECT
 	COUNT(DISTINCT order_id) AS unique_order
 FROM 
-	customer_orders;
+	customer_orders_temp;
 ````
 
 #### Answer:
-|   | unique_order |
-| - | --------- |
-| 1 | 10        |
+ | unique_order |
+ | --------- |
+ | 10        |
 
-- 14 pizzas were ordered.
+- 10 unique customer orders were made.
 
 ***
 
+#### 3. How many successful orders were delievered by each runner?
+
+````sql
+SELECT 
+	runner_id,
+	COUNT(order_id) as successful_order
+FROM 
+	runner_orders_temp
+WHERE
+	distance IS NOT NULL
+GROUP BY 
+	runner_id
+ORDER BY
+	runner_id asc;
+````
+
+#### Answer:
+| runner_id  | succesful_order |
+| - | --------- |
+| 1 | 4        |
+| 2 | 3        |
+| 3 | 2        |
+
+- runner 1 had 4 succesful orders.  
+- runner 2 had 3 succesful orders.
+- runner 3 had 2 succesful orders.   
+
+***
+
+#### 4. How many of each type of pizza was delivered?
+
+````sql
+SELECT 
+	p.pizza_name,
+	COUNT(c.pizza_id) as pizza_delivered
+FROM
+	customer_orders_temp c
+INNER JOIN runner_orders_temp r
+	ON c.order_id = r.order_id
+INNER JOIN pizza_names p
+	ON c.pizza_id = p.pizza_id
+WHERE
+	distance IS NOT NULL
+GROUP BY 
+	p.pizza_name;
+````
+
+#### Answer:
+| pizza_name | pizza_delivred |
+| - | --------- |
+| Meatlovers | 9        |
+| Vegetarian | 3        |
+
+- 9 Meatlovers pizza were delivered.
+- 3 Vegetarian pizzas were delivered.
+
+***
+
+#### 5. How many Vegetarian and Meatlovers were ordered by each customer?
+
+````sql
+SELECT
+	c.customer_id,
+	p.pizza_name,
+	count(c.pizza_id) as num_ordered
+FROM 
+	pizza_names p
+INNER JOIN customer_orders_temp c
+	ON p.pizza_id = c.pizza_id
+GROUP BY 
+	c.customer_id,
+	p.pizza_name
+ORDER BY 
+	c.customer_id;
+````
+
+#### Answer:
+| customer_id | pizza_name | num_ordered |
+| - | --------- | --------- | 
+| 101 | Meatlovers        | 2        |
+| 101 | Vegetarian        | 1 	     |
+| 102 | Meatlovers        | 2        |
+| 102 | Vegetarian        | 1 	     |
+| 103 | Meatlovers        | 3        |
+| 103 | Vegetarian        | 1 	     |
+| 104 | Meatlovers        | 3        |
+| 105 | Vegetarian        | 1 	     |
+
+- customer 101 ordered 2 Meatlovers and 1 Vegetarian.
+- customer 102 ordered 2 Meatlovers and 1 Vegetarian.
+- customer 103 ordered 3 Meatlovers and 1 Vegetarian.
+- customer 104 ordered 3 Meatlovers.
+- customer 105 ordered 1 Vegetarian.
+
+***
+
+#### 6. What was the maximum number of pizzas delivered in a single order?
+
+````sql
+SELECT
+	c.order_id,
+	COUNT(c.pizza_id) as num_pizza
+FROM 
+	customer_orders_temp c
+INNER JOIN runner_orders_temp r
+	ON c.order_id = r.order_id
+WHERE 
+	distance IS NOT NULL
+GROUP BY
+	c.order_id
+ORDER BY
+	num_pizza desc
+LIMIT 1;
+````
+
+#### Answer:
+| order_id | num_pizza |
+| - | --------- |
+| 4 | 3        |
+
+- The maximum number of pizzas delievered in a single order was 3
+
+***
+
+#### 7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+
+````sql
+SELECT
+	c.customer_id,
+	COUNT(
+		CASE
+			WHEN c.exclusions != '' OR c.extras != '' THEN 1
+		END) AS custom,
+	COUNT(
+		CASE
+			WHEN c.exclusions = '' AND c.extras = '' THEN 1
+		END) AS regular
+FROM 
+	customer_orders_temp c
+INNER JOIN runner_orders_temp r
+	ON c.order_id = r.order_id
+WHERE 
+	distance IS NOT NULL
+GROUP BY
+	c.customer_id
+ORDER BY
+	c.customer_id;
+````
+
+#### Answer:
+| customer_id | custom | regular |
+| - | --------- | --------- |
+| 101 | 0        | 2 |
+| 102 | 0        | 3 |
+| 103 | 3        | 0 |
+| 104 | 2        | 1 |
+| 105 | 1        | 0 |
+
+- customer 101 had 0 custom order and 2 regular order
+- customer 102 had 0 custom order and 3 regular order
+- customer 103 had 3 custom order and 0 regular order
+- customer 104 had 2 custom order and 1 regular order
+- customer 105 had 1 custom order and 0 regular order
+
+***
+
+#### 8. How many pizzas were delivered that had both exclusions and extras?
+
+````sql
+SELECT
+	COUNT(
+		CASE
+			WHEN c.exclusions != '' AND c.extras !='' THEN 1
+		END
+	) AS both_exlusions_and_extras
+FROM
+	customer_orders_temp c
+INNER JOIN runner_orders_temp r
+	ON c.order_id = r.order_id
+WHERE
+	distance IS NOT NULL
+````
+#### Answer:
+ | both_exclusions_and_extras |
+ | --------- |
+ | 1        | 
+
+
+- 1 pizzas was delivered that had both exclusions and extras
+
+***
+
+#### 9. What was the total volume of pizzas ordered for each hour of the day?
+
+````sql
+SELECT
+	EXTRACT(HOUR FROM order_time) AS order_hour, 
+	COUNT(*) AS num_pizzas
+FROM 
+	customer_orders
+GROUP BY 
+	order_hour
+ORDER BY 
+	order_hour;
+````
+#### Answer:
+|  | custom | regular |
+| - | --------- | --------- |
+| 101 | 0        | 2 |
+| 102 | 0        | 3 |
+| 103 | 3        | 0 |
+| 104 | 2        | 1 |
+| 105 | 1        | 0 |
+
+
+- 1 pizzas was delivered that had both exclusions and extras
+
+***
+
+#### 10. What was the total volume of pizzas ordered for each hour of the day?
+
+````sql
+SELECT
+	EXTRACT(HOUR FROM order_time) AS order_hour, 
+	COUNT(*) AS num_pizzas
+FROM 
+	customer_orders
+GROUP BY 
+	order_hour
+ORDER BY 
+	order_hour;
+````
+#### Answer:
+|  | both_exclusions_and_extras |
+| - | --------- |
+| 1 | 1        | 
+
+
+- 1 pizzas was delivered that had both exclusions and extras
