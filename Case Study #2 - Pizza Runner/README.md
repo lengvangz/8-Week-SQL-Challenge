@@ -61,7 +61,7 @@ FROM pizza_runner.customer_orders;
 ````
 
 Result:
-- all null values and 'null' values in both columns are now blank spaces
+- all null values and 'null' values in both columns are now blank spaces.
 
 <img width="1063" alt="image" src="https://github.com/lengvangz/images/blob/main/customer_orders_temp%20table.png">
 
@@ -76,7 +76,7 @@ On the `customer_orders` table below, there are:
 Steps taken to clean `runner_order` table:
 - Create a temporary table and be the copy of the original table.
 - Replaced all 'null' values (as a string) into null values.
-- Removed 'km', 'mins', 'minute', and 'minutes' from `distance` and `duration`
+- Removed 'km', 'mins', 'minute', and 'minutes' from `distance` and `duration`.
 - Replaced null values and 'null' values into blank spaces in the `cancellation` column.
 - Altered data types in certain columns.
 
