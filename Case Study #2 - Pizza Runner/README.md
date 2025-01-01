@@ -130,9 +130,9 @@ FROM
 ````
 
 #### Answer:
-|   | num_pizza |
+| . | num_pizza |
 | _ | --------- |
-|   | 14        |
+| 1 | 14        |
 
 - 14 pizzas were ordered.
 
