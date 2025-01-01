@@ -18,14 +18,14 @@ Danny was sold on the idea of "80s Retro Styling and Pizza Is The Future!" and w
 
 Danny started recruiting "runners" to deliver pizza from Pizza Runner HQ and also maxed out his credit card to pay freelancers to develop a mobile app to accept orders.
 
-## Task 📋 
+## Task
 
 Danny created an entity-relationship diagram of his database design but requires help with data cleaning and performing basic calculations to improve the direction of his runners and streamline Runner Pizza's operations.
 
 ###  Entity Relationship Diagram
 ![image](https://github.com/katiehuangx/8-Week-SQL-Challenge/assets/81607668/78099a4e-4d0e-421f-a560-b72e4321f530)
 
-## 🏃 Actions
+## Actions
 
 ### Data Cleaning & Transformation
 
