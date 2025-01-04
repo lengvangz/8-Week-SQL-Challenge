@@ -17,7 +17,7 @@ ORDER BY
 -- 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 SELECT 
-	DATE_TRUNC('minute',AVG(pickup_time - order_time))
+	DATE_TRUNC('minute', AVG(pickup_time - order_time)) AS avg_time
 FROM 
 	runner_orders_temp r
 INNER JOIN customer_orders_temp c
@@ -29,7 +29,7 @@ WHERE
 
 SELECT 
 	c.customer_id,
-	AVG(r.distance)
+	ROUND(AVG(r.distance), 2) AS avg_distance
 FROM 
 	customer_orders_temp c
 INNER JOIN runner_orders_temp r
@@ -55,7 +55,7 @@ FROM
 SELECT 
 	order_id,
 	runner_id,
-	(distance/duration) * 60 AS avg_speed
+	ROUND((distance/duration) * 60, 2) AS avg_speed
 FROM
 	runner_orders_temp
 WHERE
