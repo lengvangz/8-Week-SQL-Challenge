@@ -17,7 +17,7 @@ ORDER BY
 -- 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 SELECT 
-	date_trunc('minute',AVG(pickup_time - order_time))
+	DATE_TRUNC('minute',AVG(pickup_time - order_time))
 FROM 
 	runner_orders_temp r
 INNER JOIN customer_orders_temp c
