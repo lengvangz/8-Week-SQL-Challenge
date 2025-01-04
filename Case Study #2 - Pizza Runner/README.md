@@ -415,108 +415,176 @@ GROUP BY
 
 ### B) Runner and Customer Experience
 
-#### 1. question
+#### 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 
 ````sql
---Code
+-- offset dates by three days to ensure EXTRACT() starts 01/01/2021
+SELECT 
+	EXTRACT(week FROM registration_date + 3) AS week_period,
+	COUNT(*) AS num_runner
+FROM 
+	runners
+GROUP BY 
+	week_period
+ORDER BY
+	week_period 
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| week_period | num_runner |
+| --------- | --------- |
+| 1        | 2        |
+| 2        | 1       |
+| 3        | 1        |
 
-- answer.
+- Starting 2021-01-01, week 1 had 2 runners signed up.
+- Starting 2021-01-01, week 2 had 1 runners signed up.
+- Starting 2021-01-01, week 3 had 1 runners signed up.
 
 ***
 
-#### 2. question
+#### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+
 
 ````sql
---Code
+SELECT 
+	DATE_TRUNC('minute',AVG(pickup_time - order_time))
+FROM 
+	runner_orders_temp r
+INNER JOIN customer_orders_temp c
+	ON r.order_id = c.order_id
+WHERE
+	distance IS NOT NULL;
 ````
 
 #### Answer:
-| name |
+| avg_time |
 | --------- |
-| data        |
+| 00:18:00        |
 
-- answer.
+- 18 minutes was the average time for each runner to arrive from Pizza Runner HQ to order pickup.
 
 ***
 
-#### 3. question
+#### 4. What was the average distance travelled for each customer?
 
 ````sql
---Code
+SELECT 
+	c.customer_id,
+	ROUND(AVG(r.distance), 2) AS avg_distance
+FROM 
+	customer_orders_temp c
+INNER JOIN runner_orders_temp r
+	on c.order_id = r.order_id
+WHERE 
+	distance IS NOT NULL
+GROUP BY
+	c.customer_id
+ORDER BY
+	c.customer_id;
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| customer_id | avg_distance |
+| --------- | --------- |
+| 101        | 20.00        |
+| 102        | 16.73        |
+| 103        | 23.40        |
+| 104        | 10.00        |
+| 105        | 25.00        |
 
-- answer.
+- For customer 101, the average distance traveled was 20km.
+- For customer 102, the average distance traveled was 16.73km.
+- For customer 103, the average distance traveled was 23.40km.
+- For customer 104, the average distance traveled was 10km.
+- For customer 105, the average distance traveled was 25km.
+  
+***
+
+#### 5. What was the difference between the longest and shortest delivery times for all orders?
+
+````sql
+SELECT
+	MAX(duration) - MIN(duration) AS diff_delivery_times
+FROM 
+	runner_orders_temp
+````
+
+#### Answer:
+| diff_delivery_times |
+| --------- |
+| 30        |
+
+- 30 minutes is the difference between the longest and shortest delivery times.
 
 ***
 
-#### 4. question
+#### 6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
 
 ````sql
---Code
+SELECT 
+	order_id,
+	runner_id,
+	ROUND((distance/duration) * 60, 2) AS avg_speed
+FROM
+	runner_orders_temp
+WHERE
+	distance IS NOT NULL
+GROUP BY
+	order_id,
+	runner_id,
+	avg_speed
+ORDER BY
+	order_id;
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| order_id | runner_id | avg_speed |
+| --------- | --------- | --------- |
+| 1        | 1        | 37.50        |
+| 2        | 1        | 44.44        |
+| 3        | 1        | 40.20        |
+| 4        | 2        | 35.10        |
+| 5        | 3        | 40.00        |
+| 7        | 2        | 60.00        |
+| 8        | 2        | 93.60        |
+| 10        | 1        | 60.00        |
 
-- answer.
+- Runner 1's average speed was 37.50, 44.44, and 35.10 in kmph for order 1, 2, and 3.
+- Runner 2's average speed was  35.10, 60.00, and 93.60 in pmph for order 4, 7, and 8.
+- Runner 3's average speed was 40.00 in kmph for order 5.
+- Runner 2's 93.60 is high compare to others.  Could be an error.
 
 ***
 
-#### 5. question
+#### 7. What is the successful delivery percentage for each runner?
 
 ````sql
---Code
+SELECT
+	runner_id,
+	100 * SUM(
+			CASE
+				WHEN distance IS NULL THEN 0
+				ELSE 1 
+			END) / COUNT(*) AS delivery_percentage
+FROM 
+	runner_orders_temp
+GROUP BY 
+	runner_id
+ORDER BY
+	runner_id
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| runner_id | delivery_percentage |
+| --------- | --------- |
+| 1        | 100        |
+| 2        | 75        |
+| 2        | 50        |
 
-- answer.
-
-***
-
-#### 6. question
-
-````sql
---Code
-````
-
-#### Answer:
-| name |
-| --------- |
-| data        |
-
-- answer.
-
-***
-
-#### 7. question
-
-````sql
---Code
-````
-
-#### Answer:
-| name |
-| --------- |
-| data        |
-
-- answer.
+- Runner 1 has a 100% delivery success rate.
+- Runner 2 has a 75% delivery success rate.
+- Runner 3 has a 50% delivery success rate
 
 ***
 
@@ -529,9 +597,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -544,9 +612,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -559,9 +627,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -574,9 +642,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -589,9 +657,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -604,9 +672,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -621,9 +689,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -636,9 +704,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -651,9 +719,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -666,9 +734,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -681,9 +749,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
@@ -696,9 +764,9 @@ GROUP BY
 ````
 
 #### Answer:
-| name |
-| --------- |
-| data        |
+| name | name |
+| --------- | --------- |
+| data        | data        |
 
 - answer.
 
