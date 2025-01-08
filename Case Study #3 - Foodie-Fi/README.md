@@ -1,7 +1,7 @@
 
 # 🍕 Case Study #2 Pizza Runner
 
-<img src="https://github.com/lengvangz/images/blob/main/%232%20pic.png" alt="Image" width="500" height="520">
+<img src="https://github.com/lengvangz/images/blob/main/%233%20pic.png" alt="Image" width="500" height="520">
 
 ## 📖 Table of Contents
 - [Situation](#Situation)
@@ -22,7 +22,7 @@ Danny started recruiting "runners" to deliver pizza from Pizza Runner HQ and als
 Danny created an entity-relationship diagram of his database design but requires help with data cleaning and performing basic calculations to improve the direction of his runners and streamline Runner Pizza's operations.
 
 ###  Entity Relationship Diagram
-![image](https://github.com/lengvangz/images/blob/main/%232%20diagram.png)
+![image](https://github.com/lengvangz/images/blob/main/%233%20diagram.png))
 
 ## Actions
 
