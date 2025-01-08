@@ -1,5 +1,5 @@
 
-# 🍕 Case Study #2 Pizza Runner
+# 🍕 Case Study #3 Foodie-Fi
 
 <img src="https://github.com/lengvangz/images/blob/main/%233%20pic.png" alt="Image" width="500" height="520">
 
