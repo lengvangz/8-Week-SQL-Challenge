@@ -1,5 +1,5 @@
 # 🍜 Case Study #1: Danny's Diner 
-<img src="https://github.com/lengvangz/images/blob/main/%231%20pic.png" alt="Image" width="500" height="520">
+[<img src="https://github.com/lengvangz/images/blob/main/%231%20pic.png" alt="Image" width="500" height="520">](https://github.com/lengvangz/images/blob/main/%231%20pic.png)
 
 ## 📖 Table of Contents
 - [Situation](#Situation)
